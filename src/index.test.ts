@@ -26,3 +26,7 @@ act(() => {
    */
 });
 // make assertions
+
+it("test", () => {
+  expect(container.textContent).toBe("");
+});
