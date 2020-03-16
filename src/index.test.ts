@@ -1,4 +1,5 @@
 import { unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
 
 /**
  * beforeEach, afterEachブロックペアを常に実行する事で副作用の範囲をそれ自身にとどまるようにする
@@ -15,3 +16,13 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
 });
+
+act(() => {
+  // render components
+  /**
+   * レンダー、ユーザイベント、データの取得といったタスクはユーザーインターフェイスへのインタラクションのunitである。
+   * actヘルパーは上記のunitに関する更新が全て処理されていることを保証する。
+   * ちなみに React Testing Library のヘルパーは act() でラップされているので冗長にならない。
+   */
+});
+// make assertions
